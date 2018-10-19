@@ -31,7 +31,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="{{URL::to('admin/workers-list')}}">Ver lista</a></li>
-                <li><a href="#">Registrar</a></li>
+                <li><a href="{{URL::to('admin/workers-new')}}">Registrar</a></li>
               </ul>
             </li>
           </ul>

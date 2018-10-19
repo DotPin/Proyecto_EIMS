@@ -10,11 +10,11 @@ $(function () {
     $("[data-mask]").inputmask();
 
     //Date range picker
-    $('#reservation').daterangepicker();
+    //$('#reservation').daterangepicker();
     //Date range picker with time picker
-    $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
+    //$('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
     //Date range as a button
-    $('#daterange-btn').daterangepicker(
+    /*$('#daterange-btn').daterangepicker(
             {
                 ranges: {
                     'Today': [moment(), moment()],
@@ -30,38 +30,38 @@ $(function () {
             function (start, end) {
                 $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
             }
-    );
+    ); */
 
     //Date picker
     $('#datepicker').datepicker({
         autoclose: true
     });
 
-    $('#pickadate').pickadate();
-    $('#pickatime').pickatime();
+    //$('#pickadate').pickadate();
+    //$('#pickatime').pickatime();
 
     //Timepicker
-    $(".timepicker").timepicker();
+    //$(".timepicker").timepicker();
 
     //Colorpicker
-    $(".my-colorpicker1").colorpicker();
+    //$(".my-colorpicker1").colorpicker();
     //color picker with addon
-    $(".my-colorpicker2").colorpicker();
+    //$(".my-colorpicker2").colorpicker();
 
     //iCheck for checkbox and radio inputs
-    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+    /*$('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
         checkboxClass: 'icheckbox_minimal-blue',
         radioClass: 'iradio_minimal-blue'
-    });
+    });*/
     //Red color scheme for iCheck
-    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+    /*$('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
         checkboxClass: 'icheckbox_minimal-red',
         radioClass: 'iradio_minimal-red'
-    });
+    });*/
     //Flat red color scheme for iCheck
-    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+    /*$('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
         checkboxClass: 'icheckbox_flat-green',
         radioClass: 'iradio_flat-green'
-    });
+    });*/
 
 });
