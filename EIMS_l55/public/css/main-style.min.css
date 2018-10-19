@@ -3848,14 +3848,14 @@ a.btn-social,a.btn-social-icon{
     height:34px
 }
 .select2-container--default.select2-container--open{
-    border-color:#ffc824
+    border-color:#08088A
 }
 .select2-dropdown{
     border:1px solid #d2d6de;
     border-radius:0
 }
 .select2-container--default .select2-results__option--highlighted[aria-selected]{
-    background-color:#ffc824;
+    background-color:#08088A;
     color:#fff
 }
 .select2-results__option{

@@ -19,3 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/workers-list', 'HomeController@getList');
+Route::get('/admin/workers-new', 'HomeController@getRegister');
+Route::post('/admin/register-worker', 'HomeController@postRegisterWorker')->name('createWorker');
