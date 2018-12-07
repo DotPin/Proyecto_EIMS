@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Supplier;
 use Response;
 use Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -33,6 +34,7 @@ class HomeController extends Controller
     public function getList()
     {
         $users = User::all();
+        //dd(compact('users'));
         return view('/admin/workers_list', compact('users'));
     }
 
@@ -41,6 +43,14 @@ class HomeController extends Controller
         return view('/admin/workers_new');
     }
 
+    public function getListSup(){
+    
+        $sup = Supplier::all();
+        return view('/admin/supplier_list', compact('sup'));
+
+        
+    }
+    
     public function postRegisterWorker(Request $request)
     {
         $aux = $request->validate([
@@ -92,4 +102,7 @@ class HomeController extends Controller
             ]);
     }
 
+    
+    
+    
 }

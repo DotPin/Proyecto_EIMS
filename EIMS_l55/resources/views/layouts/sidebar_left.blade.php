@@ -34,6 +34,20 @@
                 <li><a href="{{URL::to('admin/workers-new')}}">Registrar</a></li>
               </ul>
             </li>
+            
+            <li class="treeview">
+              <a href="#"><i class="fa fa-id-card"></i> <span>Proveedores</span>
+              <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+              </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{URL::to('/admin/supplier-list')}}">Ver lista</a></li>
+                <li><a href="{{URL::to('admin/workers-new')}}">Registrar</a></li>
+              </ul>
+            </li>
+            
+            
           </ul>
           @elseif(Auth::user()->type == 'worker')
           <ul class="sidebar-menu">
