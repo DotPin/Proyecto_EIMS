@@ -26,8 +26,9 @@ Route::post('/admin/destroy-worker', 'HomeController@postWorkerDestroy')->name('
 Route::put('/admin/update-worker', 'HomeController@putWorkerUpdate')->name('updateWorker');
 
 Route::get('/admin/supplier-list', 'HomeController@getListSup');
-/*Route::get('/admin/supplier-new', 'HomeController@getRegisterSup');*/
-// Route::post('/admin/register-supplier', 'HomeController@postRegisterWorker')->name('createWorker');
-// Route::post('/admin/edit-supplier', 'HomeController@postWorkerEdit')->name('editWorker');
-// Route::post('/admin/destroy-supplier', 'HomeController@postWorkerDestroy')->name('deleteWorker');
-// Route::put('/admin/update-supplier', 'HomeController@putWorkerUpdate')->name('updateWorker');
+Route::get('/admin/supplier-new', 'HomeController@getRegisterSup');
+Route::post('/admin/register-supplier', 'HomeController@postRegisterSupplier')->name('createSupplier');
+Route::post('/admin/edit-supplier', 'HomeController@postSupplierEdit')->name('editSupplier');
+Route::post('/admin/destroy-supplier', 'HomeController@postSupplierDestroy')->name('deleteSupplier');
+
+Route::put('/admin/update-supplier', 'HomeController@putSupplierUpdate')->name('updateSupplier');

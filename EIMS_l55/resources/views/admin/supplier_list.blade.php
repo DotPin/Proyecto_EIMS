@@ -93,7 +93,7 @@
             <!-- /. content-wrapper -->
             <!-- Main Footer -->
             @include('layouts.footer')
-            @include('admin.edit_modal')
+            @include('admin.edit_modal_supplier')
 
         </div>
         <!-- /. wrapper content-->
@@ -111,7 +111,7 @@
         <script src="{{asset('js/app2.js')}}"></script>
         <!-- Slimscroll is required when using the fixed layout. -->
         
-        <!--  Actualizar scritp para que funcione con supplier-update
+   
         <script>
             $(document).ready(function(){
 
@@ -125,25 +125,23 @@
                 e.preventDefault();
 
                 var name = $('#name').val();
-                var lName = $('#lName').val();
-                var type = $('#type').val();
-                var charge = $('#charge').val();
+                var company = $('#company').val();
+                var address = $('#address').val();
                 var phone = $('#phone').val();
                 var email = $('#email').val();
-                var status = $('#status').val();
-
+                
                 $.ajax({
                     // En data puedes utilizar un objeto JSON, un array o un query string
-                   data:{name:name, lName:lName, type:type, charge:charge, phone:phone, email:email, status:status, "_token": "{{ csrf_token() }}"},
+                   data:{name:name, company:company, address:address, phone:phone, email:email, "_token": "{{ csrf_token() }}"},
                     //Cambiar a type: POST si necesario
                     type: 'PUT',
                     // Formato de datos que se espera en la respuesta
                     dataType: "json",
                     // URL a la que se enviará la solicitud Ajax
-                    url: '/admin/update-worker' ,
+                    url: '/admin/update-supplier' ,
                     success:function(json){
                         $('#modal-default').modal('hide');
-                        window.location.assign('workers-list');
+                        window.location.assign('supplier-list');
 
 
 
@@ -177,7 +175,7 @@
                     // Formato de datos que se espera en la respuesta
                     dataType: "json",
                     // URL a la que se enviará la solicitud Ajax
-                    url: '/admin/destroy-worker' , 
+                    url: '/admin/destroy-supplier' , 
                     success: function(json){
                         swal("Borrado!", name+" ha sido borrado", "success");
                             } 
@@ -201,26 +199,22 @@
                     // Formato de datos que se espera en la respuesta
                     dataType: "json",
                     // URL a la que se enviará la solicitud Ajax
-                    url: '/admin/edit-worker' ,
+                    url: '/admin/edit-supplier' ,
                     success : function(json) {
 
 
                     $('#name').val(json.name);
-                    $('#lName').val(json.lName);
-                    $('#type').val(json.type);
-                    $('#charge').val(json.charge);
+                    $('#company').val(json.company);
+                    $('#address').val(json.address);
                     $('#email').val(json.email);
                     $('#phone').val(json.phone);
-                    $('#status').val(json.status);
-
-
-                        }
+                       }
                     }); 
 
                  });
 
             });
 
-        </script> -->
+        </script>
     </body>
 </html>

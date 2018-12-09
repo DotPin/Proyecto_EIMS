@@ -31,6 +31,8 @@ class HomeController extends Controller
         return view('home');
     }
 
+    //************************Controladores para CRUD Trabajadores*******************
+
     public function getList()
     {
         $users = User::all();
@@ -43,14 +45,6 @@ class HomeController extends Controller
         return view('/admin/workers_new');
     }
 
-    public function getListSup(){
-    
-        $sup = Supplier::all();
-        return view('/admin/supplier_list', compact('sup'));
-
-        
-    }
-    
     public function postRegisterWorker(Request $request)
     {
         $aux = $request->validate([
@@ -75,7 +69,7 @@ class HomeController extends Controller
 
         return $worker->toJson();
     }
-    
+
     public function postWorkerDestroy(Request $request)
     {
         $worker = User::findOrFail($request->get('id'));
@@ -97,6 +91,70 @@ class HomeController extends Controller
         $worker->save();
 
         $message = ' Trabajador(a) '.$worker->name.' '.$worker->lName.' fue actualizado(a) exitosamente.';
+        return response()->json([
+            'message'=> $message
+            ]);
+    }
+
+    //************************Controladores para CRUD Proveedores*******************
+
+    public function getRegisterSup()
+    {
+        return view('/admin/supplier_new');
+    }
+
+    public function getListSup(){
+    
+        $sup = Supplier::all();
+        return view('/admin/supplier_list', compact('sup'));
+
+        
+    }
+
+    public function postRegisterSupplier(Request $request)
+    {
+        $aux = $request->validate([
+            'name' => 'required|string|max:255',        
+            'company' => 'required|string|max:255',        
+            'address' => 'required|string|max:255',         
+            'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|string|max:255',
+
+        ]);
+
+        $supplier = Supplier::create($request->all());
+
+        \Session::flash('message', 'Proveedor(a) '.$request->name.' de '.$request->company.' ha sido registrado(a) con éxito');
+        
+    return Redirect::to('/admin/supplier-new');
+    }
+
+    public function postSupplierEdit(Request $request)
+    {
+        $supplier = Supplier::findOrFail($request->get('id'));
+
+        return $supplier->toJson();
+    }
+
+    public function postSupplierDestroy(Request $request)
+    {
+        $supplier = Supplier::findOrFail($request->get('id'));
+        $supplier->delete();
+
+        return response()->json();
+    }
+
+    public function putSupplierUpdate(Request $request)
+    {
+        $supplier = Supplier::where('email',$request->email)->first();
+        $supplier->name = $request->name;
+        $supplier->company = $request->company;
+        $supplier->address = $request->address;
+        $supplier->phone = $request->phone;
+        $supplier->email = $request->email;
+        $supplier->save();
+
+        $message = ' Trabajador(a) '.$supplier->name.' de compañía'.$supplier->company.' fue actualizado(a) exitosamente.';
         return response()->json([
             'message'=> $message
             ]);
