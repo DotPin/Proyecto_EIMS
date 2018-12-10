@@ -30,5 +30,4 @@ Route::get('/admin/supplier-new', 'HomeController@getRegisterSup');
 Route::post('/admin/register-supplier', 'HomeController@postRegisterSupplier')->name('createSupplier');
 Route::post('/admin/edit-supplier', 'HomeController@postSupplierEdit')->name('editSupplier');
 Route::post('/admin/destroy-supplier', 'HomeController@postSupplierDestroy')->name('deleteSupplier');
-
 Route::put('/admin/update-supplier', 'HomeController@putSupplierUpdate')->name('updateSupplier');

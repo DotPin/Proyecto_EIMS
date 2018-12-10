@@ -109,6 +109,7 @@
         <script src="{{asset('js/sweetalert/sweetalert.min.js')}}"></script>
         <script src="{{asset('/responsive-tables/responsivetables.js')}}"></script>
         <script src="{{asset('js/app2.js')}}"></script>
+        
         <!-- Slimscroll is required when using the fixed layout. -->
         
    
