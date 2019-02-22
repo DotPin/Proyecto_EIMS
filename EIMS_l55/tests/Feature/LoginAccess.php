@@ -86,7 +86,7 @@ class LoginAccess extends TestCase
 
         $response = $this->from('/login')->post('/login', [
             'email' => 'camaleon@perro.cl',	//usuario incorrecto
-            'password' => $user->password,	//password correcta
+            'password' => $user->password,	//password correcta de algún usuario
         ]);
         
         $response->assertRedirect('/login');
