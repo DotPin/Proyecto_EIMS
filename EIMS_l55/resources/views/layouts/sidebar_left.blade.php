@@ -36,7 +36,7 @@
             </li>
             
             <li class="treeview">
-              <a href="#"><i class="fa fa-id-card"></i> <span>Proveedores</span>
+              <a href="#"><i class="fa fa-address-book-o"></i> <span>Proveedores</span>
               <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
               </span>
