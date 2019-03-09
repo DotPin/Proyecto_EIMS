@@ -186,31 +186,35 @@
 
                             <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title">Tabla de ítems</h3>
+                                    <h3 class="box-title">Tabla de subcategorias</h3>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
                                     <table id="items" class="table table-bordered table-striped datatable">
                                         <thead>
                                             <tr>
-                                                <th>Foto</th>
                                                 <th>Nombre</th>
-                                                <th>Descripción</th>
-                                                <th>Categoría</th>
-                                                <th>Subcategoría</th>
-                                                <th>BarCode</th>
+                                                <th>Descripcion</th>
+                                                <th>Pertenece a</th>
+                                                <th>En stock</th>
+                                                <th>Límite para alertar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        	@foreach($items as $i)
+                                            <div class="hidden">{{$aux = 0}}</div>
+                                        	@foreach($subcat as $sc)
                                             <tr>
-                                                <td><center><img src="{{$i->itemImg}}" height="100px" width="100px"></td>
-                                                <td>{{$i->name}}</td>
-                                                <td>{{$i->description}}</td>
-                                                <td>{{$i->categoryR->name}}</td>
-                                                <td>{{$i->subCatR->name}}</td>
-                                                <td><img src="/img/{{$i->IBC}}"></td>
+                                                <td>{{$sc->name}}</td>
+                                                <td>{{$sc->detail}}</td>
+                                                <td>{{$sc->catR->name}}</td>
+                                                @if($scount[$aux] < $sc->alertLimit)
+                                                    <td style="color:red">{{$scount[$aux]}}</td>
+                                                @else
+                                                    <td>{{$scount[$aux]}}</td>
+                                                @endif
+                                                <td>{{$sc->alertLimit}}</td>
                                             </tr>
+                                            <div class="hidden">{{$aux = $aux + 1}}</div>
                                             @endforeach
                                         </tbody>
                                     </table>

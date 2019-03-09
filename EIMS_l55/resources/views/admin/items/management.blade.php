@@ -48,6 +48,20 @@
                     </ol>
                 </section>
                 <section class="content">
+
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="info-box btn btn-default model" type="button">
+                                <div class="info-box-content">
+                                    <i class="fa fa-barcode text-navy pull-left"></i>
+                                    <div class="text-center value">Agregar</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/.col-->
+                    </div>
+
+
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="box">
@@ -67,16 +81,25 @@
                                                 <th>Descripción</th>
                                                 <th>Categoría</th>
                                                 <th>Subcategoría</th>
+                                                <th>BarCode</th>
+                                                <th>Acción</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($items as $i)
                                             <tr>
-                                                <td><center><img src="" height="100px" width="100px"></td>
-                                                <td>asd</td>
-                                                <td>asd</td>
-                                                <td></td>
-                                                <td></td>
+                                                <td><center><img src="{{$i->itemImg}}" height="100px" width="100px"></td>
+                                                <td>{{$i->name}}</td>
+                                                <td>{{$i->description}}</td>
+                                                <td>{{$i->categoryR->name}}</td>
+                                                <td>{{$i->subCatR->name}}</td>
+                                                <td><img src="/img/{{$i->IBC}}"></td>
+                                                <td>
+                                                    <a href="#!" id="{{$i->id}}" class="model-open-edit fa fa-pencil-square-o fa-2x text-blue" aria-hidden="true" data-toggle="modal" data-target="#modal-default"></a>
+                                                    <a href="#" id="{{$i->id}}" name="{{$i->name}}" class="delete fa fa-trash fa-2x text-red" aria-hidden="true"></a>
+                                                </td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -94,7 +117,8 @@
             <!-- /. content-wrapper -->
             <!-- Main Footer -->
             @include('layouts.footer')
-            @include('admin.edit_modal')
+            @include('admin.items.edit_modal')
+            @include('admin.items.create_modal')
 
         </div>
         <!-- /. wrapper content-->

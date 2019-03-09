@@ -22,6 +22,7 @@ class SubCat extends Model
         'name',
         'detail',
         'cat_id',
+        'alertLimit',
 
     ];
 

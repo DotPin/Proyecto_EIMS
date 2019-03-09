@@ -102,6 +102,20 @@ class HomeController extends Controller
 
         $items = Item::with('categoryR','subCatR')->get();
 
+        $scount[] = Item::where('subCat_id',1)->count(); 
+        $scount[] = Item::where('subCat_id',2)->count(); 
+        $scount[] = Item::where('subCat_id',3)->count(); 
+        $scount[] = Item::where('subCat_id',4)->count(); 
+        $scount[] = Item::where('subCat_id',5)->count(); 
+        $scount[] = Item::where('subCat_id',6)->count(); 
+        $scount[] = Item::where('subCat_id',7)->count(); 
+        $scount[] = Item::where('subCat_id',8)->count(); 
+        $scount[] = Item::where('subCat_id',9)->count(); 
+
+
+
+
+
         //count by subcat
         $count1[] = Item::where('subCat_id','=','1')->count();
         $count1[] = Item::where('subCat_id','=','2')->count();
@@ -115,13 +129,13 @@ class HomeController extends Controller
 
         //dd($count);
 
-        return view('/admin/items/general_view',compact('items','subcat','count1','count2','count3'));
+        return view('/admin/items/general_view',compact('items','subcat','count1','count2','count3', 'scount'));
     }
 
     public function getManagement()
     {
-        $users = User::all();
-        return view('/admin/items/management', compact('users'));
+        $items = Item::with('categoryR','subCatR')->get();
+        return view('/admin/items/management', compact('items'));
     }
 
 }
