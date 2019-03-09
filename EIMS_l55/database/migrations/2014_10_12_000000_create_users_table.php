@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->string('charge');
             $table->enum('status', ['active','disable']);
-            $table->string('avatar')->default('/img/icons/icon-user.png');
+            $table->string('avatar')->default('/img/icons/no-img.jpg');
             $table->string('password')->default('$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm');
             $table->rememberToken();
             $table->timestamps();

@@ -16,8 +16,15 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->enum('category', ['supplies','EPP', 'tool']);
+            $table->string('description', 200);
+            $table->string('itemImg')->default("/img/icons/no-img.jpeg");
+            $table->string('IBC');
             $table->timestamps();
+
+            //fk category  
+            $table->integer('cat_id')->unsigned();
+            //fk sub-category  
+            $table->integer('subCat_id')->unsigned()->nullable();
         });
     }
 

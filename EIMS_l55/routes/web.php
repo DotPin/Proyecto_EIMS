@@ -18,9 +18,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin/workers-list', 'HomeController@getList');
-Route::get('/admin/workers-new', 'HomeController@getRegister');
+
+
+Route::get('/admin/workers/list', 'HomeController@getList')->name('listWorkers');
+Route::get('/admin/workers/new', 'HomeController@getRegister')->name('registerWorker');
 Route::post('/admin/register-worker', 'HomeController@postRegisterWorker')->name('createWorker');
 Route::post('/admin/edit-worker', 'HomeController@postWorkerEdit')->name('editWorker');
 Route::post('/admin/destroy-worker', 'HomeController@postWorkerDestroy')->name('deleteWorker');
 Route::put('/admin/update-worker', 'HomeController@putWorkerUpdate')->name('updateWorker');
+
+//items
+Route::get('/admin/items/general-view', 'HomeController@getItemsView')->name('itemsGeneralView');
+Route::get('/admin/items/management', 'HomeController@getManagement')->name('management');

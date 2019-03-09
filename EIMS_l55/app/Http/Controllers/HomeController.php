@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Item;
+use App\SubCat;
 use Response;
 use Redirect;
 use Illuminate\Support\Facades\Validator;
+use CodeItNow\BarcodeBundle\Utils\BarcodeGenerator;
 
 class HomeController extends Controller
 {
@@ -90,6 +93,35 @@ class HomeController extends Controller
         return response()->json([
             'message'=> $message
             ]);
+    }
+
+    public function getItemsView()
+    {
+        //retrieve every subcategory registered in the system
+        $subcat = SubCat::all();
+
+        $items = Item::with('categoryR','subCatR')->get();
+
+        //count by subcat
+        $count1[] = Item::where('subCat_id','=','1')->count();
+        $count1[] = Item::where('subCat_id','=','2')->count();
+        $count1[] = Item::where('subCat_id','=','3')->count();
+        $count2[] = Item::where('subCat_id','=','4')->count();
+        $count2[] = Item::where('subCat_id','=','5')->count();
+        $count2[] = Item::where('subCat_id','=','6')->count();
+        $count3[] = Item::where('subCat_id','=','7')->count();
+        $count3[] = Item::where('subCat_id','=','8')->count();
+        $count3[] = Item::where('subCat_id','=','9')->count();
+
+        //dd($count);
+
+        return view('/admin/items/general_view',compact('items','subcat','count1','count2','count3'));
+    }
+
+    public function getManagement()
+    {
+        $users = User::all();
+        return view('/admin/items/management', compact('users'));
     }
 
 }
