@@ -162,4 +162,12 @@ class HomeController extends Controller
             ]);
     }
 
+    public function postItemDestroy(Request $request)
+    {
+        $item = Item::findOrFail($request->get('id'));
+        $item->delete();
+
+        return response()->json();
+    }
+
 }

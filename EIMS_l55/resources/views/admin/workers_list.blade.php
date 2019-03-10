@@ -148,7 +148,7 @@
                     url: '/admin/update-worker' ,
                     success:function(json){
                         $('#modal-default').modal('hide');
-                        window.location.assign('workers-list');
+                        window.location.assign('list');
 
 
 
@@ -184,7 +184,14 @@
                     // URL a la que se enviará la solicitud Ajax
                     url: '/admin/destroy-worker' , 
                     success: function(json){
-                        swal("Borrado!", name+" ha sido borrado", "success");
+                        swal({
+                            title:"Usuario eliminado!!",
+                            text: name+ "ha sido removid@ de los registros EIMS",
+                            type: "success",
+                            html: true,
+                        }, function () {
+                                window.location.href = "list";
+                        });
                             } 
                         });
                     });

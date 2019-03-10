@@ -51,7 +51,7 @@
 
                     <div class="row">
                         <div class="col-sm-6 col-lg-3">
-                            <div class="info-box btn btn-default model" type="button">
+                            <div id="create" class="info-box btn btn-default" type="button">
                                 <div class="info-box-content">
                                     <i class="fa fa-barcode text-navy pull-left"></i>
                                     <div class="text-center value">Agregar</div>
@@ -119,6 +119,7 @@
             @include('layouts.footer')
             @include('admin.items.edit_modal')
             @include('admin.items.create_modal')
+           
 
         </div>
         <!-- /. wrapper content-->
@@ -148,11 +149,16 @@
                 "scrollX": true
             });
 
+            /*var createModal = $("#modal-create");
+            $('#create').on('click',function(e){
+                e.preventDefault();
+                createModal.modal("show");
+            });*/
+
             $('#btn_update').on('click',function(e){
 
 
                 e.preventDefault();
-                alert($('#id').val());
                 var id = $('#id').val();
                 var name = $('#name').val();
                 var category = $('#category').val();
@@ -170,7 +176,14 @@
                     url: '/admin/items/update-item' ,
                     success:function(json){
                         $('#modal-default').modal('hide');
-                        window.location.assign('workers-list');
+                        swal({
+                            title:"Item modificado!!",
+                            text: "Se han guardado los cambios para "+name,
+                            type: "success",
+                            html: true,
+                        }, function () {
+                                window.location.href = "management";
+                        });
 
 
 
@@ -204,9 +217,16 @@
                     // Formato de datos que se espera en la respuesta
                     dataType: "json",
                     // URL a la que se enviará la solicitud Ajax
-                    url: '/admin/destroy-worker' , 
+                    url: '/admin/items/destroy' , 
                     success: function(json){
-                        swal("Borrado!", name+" ha sido borrado", "success");
+                        swal({
+                            title:"Item borrado!!",
+                            text: "El item "+name+" ha sido eliminado de los registros EIMS",
+                            type: "success",
+                            html: true,
+                        }, function () {
+                                window.location.href = "management";
+                        });
                             } 
                         });
                     });
@@ -244,6 +264,8 @@
                     }); 
 
                  });
+
+
 
             });
 

@@ -33,3 +33,4 @@ Route::get('/admin/items/management', 'HomeController@getManagement')->name('man
 Route::post('/admin/items/edit-item', 'HomeController@postItemEdit')->name('editItem');
 Route::post('/admin/items/create-item', 'HomeController@postCreateItem')->name('createItem');
 Route::put('/admin/items/update-item', 'HomeController@putItemUpdate')->name('updateItem');
+Route::post('/admin/items/destroy', 'HomeController@postItemDestroy')->name('destroyItem');

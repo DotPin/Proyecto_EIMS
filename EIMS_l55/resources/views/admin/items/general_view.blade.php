@@ -73,7 +73,7 @@
                                 	<div>
                                     	@if($count1[$aux] >= $s->alertLimit)
                                     	{{$s->name}} 
-                                    	<div class="pull-right">{{$count2[$aux]}}/100</div>
+                                    	<div class="pull-right">{{$count1[$aux]}}/100</div>
                                     	<div class="progress xs">
                                         	<div class="progress-bar bg-green" style="width: {{$count1[$aux]}}%"></div>
                                     	</div>

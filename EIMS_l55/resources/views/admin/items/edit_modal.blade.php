@@ -7,7 +7,7 @@
                                     <h4 class="modal-title">Editar item</h4>
                                 </div>
                                 <div class="modal-body">
-                    <form class="form" method="POST" action="{{ route('createItem') }}">
+                    <form class="form" method="POST" action="{{ route('updateItem') }}">
                             {{ csrf_field() }}
                         <div class="box-body">
                             
