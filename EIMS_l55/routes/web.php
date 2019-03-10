@@ -31,6 +31,7 @@ Route::put('/admin/update-worker', 'HomeController@putWorkerUpdate')->name('upda
 Route::get('/admin/items/general-view', 'HomeController@getItemsView')->name('itemsGeneralView');
 Route::get('/admin/items/management', 'HomeController@getManagement')->name('management');
 Route::post('/admin/items/edit-item', 'HomeController@postItemEdit')->name('editItem');
-Route::post('/admin/items/create-item', 'HomeController@postCreateItem')->name('createItem');
+Route::get('/admin/items/create-item', 'HomeController@getCreateItem')->name('createItem');
 Route::put('/admin/items/update-item', 'HomeController@putItemUpdate')->name('updateItem');
 Route::post('/admin/items/destroy', 'HomeController@postItemDestroy')->name('destroyItem');
+Route::post('/admin/items/add', 'HomeController@postAddItem')->name('addItem');

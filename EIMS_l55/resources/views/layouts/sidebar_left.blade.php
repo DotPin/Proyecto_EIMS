@@ -47,6 +47,8 @@
                   <a href="{{URL::to('admin/items/general-view')}}">Vista general</a></li>
                 <li class="{{ request()->is('admin/items/management') ? 'active' : '' }}">
                   <a href="{{URL::to('admin/items/management')}}">Administrar</a></li>
+                <li class="{{ request()->is('admin/items/create-item') ? 'active' : '' }}">
+                  <a href="{{URL::to('admin/items/create-item')}}">Agregar item</a></li>
                 <li><a href="">Prestamo</a></li>
                 <li><a href="">Seguimiento</a></li>
               </ul>

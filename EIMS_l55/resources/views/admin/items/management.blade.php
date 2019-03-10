@@ -49,17 +49,7 @@
                 </section>
                 <section class="content">
 
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-3">
-                            <div id="create" class="info-box btn btn-default" type="button">
-                                <div class="info-box-content">
-                                    <i class="fa fa-barcode text-navy pull-left"></i>
-                                    <div class="text-center value">Agregar</div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/.col-->
-                    </div>
+
 
 
                     <div class="row">
@@ -118,7 +108,6 @@
             <!-- Main Footer -->
             @include('layouts.footer')
             @include('admin.items.edit_modal')
-            @include('admin.items.create_modal')
            
 
         </div>
@@ -148,12 +137,6 @@
                 "autoWidth": false,
                 "scrollX": true
             });
-
-            /*var createModal = $("#modal-create");
-            $('#create').on('click',function(e){
-                e.preventDefault();
-                createModal.modal("show");
-            });*/
 
             $('#btn_update').on('click',function(e){
 

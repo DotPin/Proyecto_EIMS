@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Item;
 use App\SubCat;
+use Image;
 use Response;
 use Redirect;
 use Illuminate\Support\Facades\Validator;
 use CodeItNow\BarcodeBundle\Utils\BarcodeGenerator;
+use Illuminate\Support\Facades\Storage;
+
 
 class HomeController extends Controller
 {
@@ -168,6 +171,56 @@ class HomeController extends Controller
         $item->delete();
 
         return response()->json();
+    }
+
+    public function getCreateItem()
+    {
+        return view('/admin/items/new');
+    }
+
+    public function postAddItem(Request $request)
+    {
+
+        $aux = $request->validate([
+            'name' => 'required|string|max:255',        
+            'category' => 'required',        
+            'subcat' => 'required',         
+            'description' => 'required|string|max:255',
+
+        ]);
+
+        $subc = SubCat::where('id',$request->subcat)->first();
+        $s = strtoupper(str_limit($subc->name, 2, $end = ''));
+        $c = strtoupper(str_limit($subc->catR->name, 2, $end = ''));
+
+        $count = Item::where('subCat_id', $request->subcat)->count() + 1;
+
+        $cod = $c.$s.$count;
+
+        $barcode = new BarcodeGenerator();
+        $barcode->setText($cod);
+        $barcode->setType(BarcodeGenerator::Code128);
+        $barcode->setScale(2);
+        $barcode->setThickness(25);
+        $barcode->setFontSize(10);
+        $code = $barcode->generate();
+
+        $code = base64_decode($code);
+        Image::make($code)->save( public_path('/img/barcode/'. $cod .'.png' ) );
+
+        $item = new Item();
+
+        $item->name                 = $request->name;
+        $item->description          = $request->description;
+        $item->IBC                  = 'barcode/'. $cod .'.png';
+        $item->subCat_id            = $request->subcat;
+        $item->cat_id               = $request->category;
+            
+        $item->save();
+
+        \Session::flash('message', 'Item '.$request->name.' ha sido ingresado con éxito');
+
+        return Redirect::to('/admin/items/create-item');
     }
 
 }

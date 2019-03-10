@@ -23,7 +23,7 @@ class Item extends Model
         'description',
         'IBC',
         'cat_id',
-        'subCat_id'
+        'subCat_id',
 
     ];
 
