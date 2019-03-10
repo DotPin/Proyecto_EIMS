@@ -20,18 +20,37 @@
           @if(Auth::user()->type == 'admin')
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="treeview">
+            <li class="treeview {{ request()->is('home') ? 'active' : '' }}">
               <a href="/home"><i class="fa fa-home"></i> <span>Inicio</span></a>
             </li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-id-card"></i> <span>Trabajadores</span>
+            <li class="treeview {{ request()->is('admin/workers/*') ? 'active' : '' }}">
+              <a href="#"><i class="fa fa-users"></i> <span>Trabajadores</span>
               <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
               </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{URL::to('admin/workers-list')}}">Ver lista</a></li>
-                <li><a href="{{URL::to('admin/workers-new')}}">Registrar</a></li>
+                <li class="{{ request()->is('admin/workers/list') ? 'active' : '' }}">
+                  <a href="{{URL::to('admin/workers/list')}}">Ver lista</a></li>
+                <li class="{{ request()->is('admin/workers/new') ? 'active' : '' }}">
+                  <a href="{{URL::to('admin/workers/new')}}">Registrar</a></li>
+              </ul>
+            </li>
+            <li class="treeview {{ request()->is('admin/items/*') ? 'active' : '' }}">
+              <a href="#"><i class="fa fa-archive"></i> <span>Items</span>
+              <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+              </span>
+              </a>
+              <ul class="treeview-menu">
+                <li class="{{ request()->is('admin/items/general-view') ? 'active' : '' }}">
+                  <a href="{{URL::to('admin/items/general-view')}}">Vista general</a></li>
+                <li class="{{ request()->is('admin/items/management') ? 'active' : '' }}">
+                  <a href="{{URL::to('admin/items/management')}}">Administrar</a></li>
+                <li class="{{ request()->is('admin/items/create-item') ? 'active' : '' }}">
+                  <a href="{{URL::to('admin/items/create-item')}}">Agregar item</a></li>
+                <li><a href="">Prestamo</a></li>
+                <li><a href="">Seguimiento</a></li>
               </ul>
             </li>
           </ul>

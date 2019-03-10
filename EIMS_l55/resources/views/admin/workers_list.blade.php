@@ -5,6 +5,7 @@
         <!-- Icons -->
         <link href="{{asset('icons/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
         <link href="{{asset('icons/themify-icons/themify-icons.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset('js/sweetalert/sweetalert.css')}}">
         <!--animate css-->
         <link rel="stylesheet" href="{{asset('animate.css')}}">
         <!-- Theme style -->
@@ -50,6 +51,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="box">
+                                <div class="message"></div>
                                 <!-- /.box-header -->
                                 <div class="box-body table-responsive no-padding">
                                     <table class="table table-hover">
@@ -79,8 +81,8 @@
                                                 <td><span class="label label-danger">Bloqueado</span></td>
                                                 @endif
                                                 <td>
-                                                    <a href="#" class="fa fa-pencil-square-o text-blue" aria-hidden="true"></a>
-                                                    <a href="#" class="fa fa-trash text-red" aria-hidden="true"></a>
+                                                    <a href="#!" id="{{$item->id}}" class="model-open-edit fa fa-pencil-square-o text-blue" aria-hidden="true" data-toggle="modal" data-target="#modal-default"></a>
+                                                    <a href="#" id="{{$item->id}}" name="{{$item->name}} {{$item->lName}}" class="delete fa fa-trash text-red" aria-hidden="true"></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -98,6 +100,7 @@
             <!-- /. content-wrapper -->
             <!-- Main Footer -->
             @include('layouts.footer')
+            @include('admin.edit_modal')
 
         </div>
         <!-- /. wrapper content-->
@@ -110,14 +113,126 @@
         <!-- DataTables -->
         <script src="{{asset('datatables/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('datatables/dataTables.bootstrap.min.js')}}"></script>
-        <script src="{{asset('responsive-tables/responsivetables.js')}}"></script>
+        <script src="{{asset('js/sweetalert/sweetalert.min.js')}}"></script>
+        <script src="{{asset('/responsive-tables/responsivetables.js')}}"></script>
         <script src="{{asset('js/app2.js')}}"></script>
         <!-- Slimscroll is required when using the fixed layout. -->
         <script>
+            $(document).ready(function(){
+
             $(function () {
                 $("#payments").DataTable();
-                $(".dataTables_filter input").addClass("dataTable_search");
             });
+
+            $('#btn_update').on('click',function(e){
+
+
+                e.preventDefault();
+
+                var name = $('#name').val();
+                var lName = $('#lName').val();
+                var type = $('#type').val();
+                var charge = $('#charge').val();
+                var phone = $('#phone').val();
+                var email = $('#email').val();
+                var status = $('#status').val();
+
+                $.ajax({
+                    // En data puedes utilizar un objeto JSON, un array o un query string
+                   data:{name:name, lName:lName, type:type, charge:charge, phone:phone, email:email, status:status, "_token": "{{ csrf_token() }}"},
+                    //Cambiar a type: POST si necesario
+                    type: 'PUT',
+                    // Formato de datos que se espera en la respuesta
+                    dataType: "json",
+                    // URL a la que se enviará la solicitud Ajax
+                    url: '/admin/update-worker' ,
+                    success:function(json){
+                        $('#modal-default').modal('hide');
+                        window.location.assign('list');
+
+
+
+               }
+                }); 
+
+            });
+
+           $('table').on('click','.delete', function(e){
+
+                var id = $(this).attr('id');
+                var name = $(this).attr('name');
+                e.preventDefault();
+
+                    swal({
+                    title: "Esta seguro(a)?",
+                    text: name+" se borrará permanentemente del sistema!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Si, borrar!",
+                    cancelButtonText: "Cancelar",
+                    closeOnConfirm: false
+                }, function () {
+                    $.ajax({
+                      data:{
+                        id:id, "_token": "{{ csrf_token() }}",
+                    },
+                    //Cambiar type si necesario
+                    type: 'POST',
+                    // Formato de datos que se espera en la respuesta
+                    dataType: "json",
+                    // URL a la que se enviará la solicitud Ajax
+                    url: '/admin/destroy-worker' , 
+                    success: function(json){
+                        swal({
+                            title:"Usuario eliminado!!",
+                            text: name+ "ha sido removid@ de los registros EIMS",
+                            type: "success",
+                            html: true,
+                        }, function () {
+                                window.location.href = "list";
+                        });
+                            } 
+                        });
+                    });
+
+                 });
+
+            
+           $('table').on('click','.model-open-edit', function(e){
+
+                e.preventDefault();
+                $.ajax({
+                    // En data puedes utilizar un objeto JSON, un array o un query string
+                   data:{
+                        id:$(this).attr('id'),
+                        "_token": "{{ csrf_token() }}",
+                    },
+                    //Cambiar type si necesario
+                    type: 'POST',
+                    // Formato de datos que se espera en la respuesta
+                    dataType: "json",
+                    // URL a la que se enviará la solicitud Ajax
+                    url: '/admin/edit-worker' ,
+                    success : function(json) {
+
+
+                    $('#name').val(json.name);
+                    $('#lName').val(json.lName);
+                    $('#type').val(json.type);
+                    $('#charge').val(json.charge);
+                    $('#email').val(json.email);
+                    $('#phone').val(json.phone);
+                    $('#status').val(json.status);
+
+
+                        }
+                    }); 
+
+                 });
+
+            });
+
         </script>
     </body>
 </html>
