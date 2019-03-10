@@ -4,10 +4,10 @@
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">Editar</h4>
+                                    <h4 class="modal-title">Editar item</h4>
                                 </div>
                                 <div class="modal-body">
-                    <form class="form" method="POST" action="{{ route('createWorker') }}">
+                    <form class="form" method="POST" action="{{ route('createItem') }}">
                             {{ csrf_field() }}
                         <div class="box-body">
                             
@@ -19,10 +19,11 @@
                             @endif
 
                             <div class="col-md-12">
+                                <div id="id" class="hidden"></div>
                                 <div class='row'>
                                     <div class='col-md-4'>
                                         <div class='form-group{{ $errors->has('name') ? ' has-error' : '' }}'>
-                                            <label>Nombre</label>
+                                            <label>Item</label>
                                             <input class="form-control" id="name" name="name" type="text" value="{{ old('name') }}">
                                             @if ($errors->has('name'))
                                                 <span class="help-block">
@@ -32,69 +33,42 @@
                                         </div>
                                     </div>
                                     <div class='col-md-4'>
-                                        <div class='form-group{{ $errors->has('lName') ? ' has-error' : '' }}'>
-                                            <label>Apellido</label>
-                                            <input class="form-control" id="lName" name="lName" type="text" value="{{ old('lName') }}">
-                                            @if ($errors->has('lName'))
-                                                <span class="help-block">
-                                                <strong>{{ $errors->first('lName') }}</strong>
-                                                </span>
-                                            @endif
+                                        <div class="form-group">
+                                            <label>Categoria</label>
+                                            <select id="category" class="form-control select2">
+                                                <option value=1>EPP</option>
+                                                <option value=2>Suministros</option>
+                                                <option value=3>Herramientas</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class='col-md-4'>
                                         <div class="form-group">
-                                            <label>Tipo</label>
-                                            <select id="type" class="form-control select2">
-                                                <option value="admin">Administrador</option>
-                                                <option value="worker">Trabajador</option>
+                                            <label>Subcategoria</label>
+                                            <select id="subcat" class="form-control select2">
+                                                <option value=1>Pies</option>
+                                                <option value=2>Cabeza</option>
+                                                <option value=3>Vestimenta</option>
+                                                <option value=4>Oficina</option>
+                                                <option value=5>Baño</option>
+                                                <option value=6>Obra</option>
+                                                <option value=7>Eléctrico</option>
+                                                <option value=8>Mecánico</option>
+                                                <option value=9>Aireacondicionado</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class='row'>
-                                    <div class='col-md-4'>
-                                        <div class='form-group{{ $errors->has('charge') ? ' has-error' : '' }}'>
-                                            <label>Cargo</label>
-                                            <input class="form-control" id="charge" name="charge" type="text" value="{{ old('charge') }}">
-                                            @if ($errors->has('charge'))
+                                    <div class='col-md-12'>
+                                        <div class='form-group{{ $errors->has('description') ? ' has-error' : '' }}'>
+                                            <label>Descripción</label>
+                                            <input class="form-control" id="description" name="description" type="text" value="{{ old('description') }}">
+                                            @if ($errors->has('description'))
                                                 <span class="help-block">
-                                                <strong>{{ $errors->first('charge') }}</strong>
+                                                <strong>{{ $errors->first('description') }}</strong>
                                                 </span>
                                             @endif
-                                        </div>
-                                    </div>
-                                    <div class='col-md-4'>
-                                        <div class='form-group{{ $errors->has('phone') ? ' has-error' : '' }}'>
-                                            <label>Teléfono</label>
-                                            <input class="form-control" id="phone" name="phone" type="text" data-inputmask='"mask": "(+569) 99999999"' value="{{ old('phone') }}" data-mask>
-                                            @if ($errors->has('phone'))
-                                                <span class="help-block">
-                                                <strong>{{ $errors->first('phone') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class='col-md-4'>
-                                        <div class='form-group{{ $errors->has('email') ? ' has-error' : '' }}'>
-                                            <label>Email</label>
-                                            <input class="form-control" id="email" name="email" type="email" value="{{ old('email') }}">
-                                            @if ($errors->has('email'))
-                                                <span class="help-block">
-                                                <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class='row'>
-                                    <div class='col-md-4'>
-                                        <div class="form-group">
-                                            <label>Estado</label>
-                                            <select id="status" class="form-control select2">
-                                                <option value="active">Activo</option>
-                                                <option value="disable">Bloqueado</option>
-                                            </select>
                                         </div>
                                     </div>
                                 </div>

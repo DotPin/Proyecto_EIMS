@@ -30,3 +30,6 @@ Route::put('/admin/update-worker', 'HomeController@putWorkerUpdate')->name('upda
 //items
 Route::get('/admin/items/general-view', 'HomeController@getItemsView')->name('itemsGeneralView');
 Route::get('/admin/items/management', 'HomeController@getManagement')->name('management');
+Route::post('/admin/items/edit-item', 'HomeController@postItemEdit')->name('editItem');
+Route::post('/admin/items/create-item', 'HomeController@postCreateItem')->name('createItem');
+Route::put('/admin/items/update-item', 'HomeController@putItemUpdate')->name('updateItem');

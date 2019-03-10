@@ -152,24 +152,22 @@
 
 
                 e.preventDefault();
-
+                alert($('#id').val());
+                var id = $('#id').val();
                 var name = $('#name').val();
-                var lName = $('#lName').val();
-                var type = $('#type').val();
-                var charge = $('#charge').val();
-                var phone = $('#phone').val();
-                var email = $('#email').val();
-                var status = $('#status').val();
+                var category = $('#category').val();
+                var subcat = $('#subcat').val();
+                var description = $('#description').val();
 
                 $.ajax({
                     // En data puedes utilizar un objeto JSON, un array o un query string
-                   data:{name:name, lName:lName, type:type, charge:charge, phone:phone, email:email, status:status, "_token": "{{ csrf_token() }}"},
+                   data:{id:id, name:name, category:category, subcat:subcat, description:description, "_token": "{{ csrf_token() }}"},
                     //Cambiar a type: POST si necesario
                     type: 'PUT',
                     // Formato de datos que se espera en la respuesta
                     dataType: "json",
                     // URL a la que se enviará la solicitud Ajax
-                    url: '/admin/update-worker' ,
+                    url: '/admin/items/update-item' ,
                     success:function(json){
                         $('#modal-default').modal('hide');
                         window.location.assign('workers-list');
@@ -230,17 +228,16 @@
                     // Formato de datos que se espera en la respuesta
                     dataType: "json",
                     // URL a la que se enviará la solicitud Ajax
-                    url: '/admin/edit-worker' ,
+                    url: '/admin/items/edit-item' ,
                     success : function(json) {
 
 
+                    $('#id').val(json.id);
                     $('#name').val(json.name);
-                    $('#lName').val(json.lName);
-                    $('#type').val(json.type);
-                    $('#charge').val(json.charge);
-                    $('#email').val(json.email);
-                    $('#phone').val(json.phone);
-                    $('#status').val(json.status);
+                    $('#category').val(json.cat_id);
+                    $('#subcat').val(json.subCat_id);
+                    $('#description').val(json.description);
+
 
 
                         }

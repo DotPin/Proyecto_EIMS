@@ -138,4 +138,28 @@ class HomeController extends Controller
         return view('/admin/items/management', compact('items'));
     }
 
+    public function postItemEdit(Request $request)
+    {
+        $item = Item::findOrFail($request->get('id'));
+
+        
+        return $item->toJson();
+    }
+
+    public function putItemUpdate(Request $request)
+    {
+        $item = Item::where('id',$request->id)->first();
+        $item->name = $request->name;
+        $item->description = $request->description;
+        $item->subCat_id = $request->subcat;
+        $item->cat_id = $request->category;
+        $item->save();
+
+
+        $message = ' Item '.$item->name.' fue actualizado exitosamente.';
+        return response()->json([
+            'message'=> $message
+            ]);
+    }
+
 }
