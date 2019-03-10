@@ -93,7 +93,7 @@ class ItemsTableSeeder extends Seeder
 
         $code = base64_decode($code);
 
-        Storage::put('public/barcode/'.$cod.'.png', $code);
+        Image::make($code)->save( public_path('/img/barcode/'. $cod .'.png' ) );
 
 
         $samples_temp[] = [  
