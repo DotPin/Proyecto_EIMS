@@ -48,34 +48,149 @@
                 <section class="content">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="box">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Suministros</h3>
-                                </div>
-                                <div class="box-body">
-                                    <canvas id="bar-chart" height="40"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="box">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Elementos de protección personal</h3>
-                                </div>
-                                <div class="box-body">
-                                    <canvas id="bar-chart2" height="40"></canvas>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="info-box">
+                                <div class="info-box-content">
+                                    <i class="fa fa-truck text-navy"></i>
+                                    <div class="text-center value">5</div>
+                                    <div class="text-muted text-uppercase text-center">Proveedores</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="box">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Herramientas</h3>
-                                </div>
-                                <div class="box-body">
-                                    <canvas id="bar-chart3" height="40"></canvas>
+                        <!--/.col-->
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="info-box">
+                                <div class="info-box-content">
+                                    <i class="fa fa-user text-light-blue"></i>
+                                    <div class="text-center value">{{$userc}}</div>
+                                    <div class="text-muted text-uppercase text-center">Trabajadores</div>
                                 </div>
                             </div>
+                        </div>
+                        <!--/.col-->
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="info-box">
+                                <div class="info-box-content">
+                                    <i class="fa fa-handshake-o text-maroon"></i>
+                                    <div class="text-center value">12</div>
+                                    <div class="text-muted text-uppercase text-center">Prestamos activos</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/.col-->
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="info-box">
+                                <div class="info-box-content">
+                                    <i class="fa fa-undo text-green"></i>
+                                    <div class="text-center value">6</div>
+                                    <div class="text-muted text-uppercase text-center">Devoluciones hoy</div>
+                                </div>
+                            </div>
+                        </div>              
+                        </div>         
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="info-box2 bg-blue">
+                                <div class="info-box-content">
+                                    <span class="info-box-text">situación general</span>
+                                    <span class="info-box-number">{{$itemc}}/2000</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: {{$itemc*100/2000}}%"></div>
+                                    </div>
+                                    <span class="progress-description">
+                                        {{$itemc*100/2000}}% de capacidad total
+                                    </span>
+                                    <hr>
+                                    @if($status1 > 0 or $status2 > 0 or $status3 > 0)
+                                   <span class="progress-description bg-red badge">
+                                        Estado: {{$status1 + $status2 + $status3}} alerta(s) 
+                                    @else
+                                    <span class="progress-description bg-purple badge">
+                                        Estado: OK
+                                    @endif
+                                    </span>                                    
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="info-box2 bg-navy">
+                                <div class="info-box-content">
+                                    <span class="info-box-text">EPP</span>
+                                    <span class="info-box-number">{{$icepp}}</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: {{$icepp*100/2000}}%"></div>
+                                    </div>
+                                    <span class="progress-description">
+                                        {{$icepp*100/2000}}% de capacidad total
+                                    </span>
+                                    <hr>
+                                    @if($status1 > 0)
+                                   <span class="progress-description bg-red badge">
+                                        Estado: {{$status1}} alerta(s) 
+                                    @else
+                                    <span class="progress-description bg-purple badge">
+                                        Estado: OK
+                                    @endif
+                                    </span>                                   
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="info-box2 bg-teal">
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Suministros</span>
+                                    <span class="info-box-number">{{$icsup}}</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: {{$icsup*100/2000}}%;"></div>
+                                    </div>
+                                    <span class="progress-description">
+                                        {{$icsup*100/2000}}% de la capacidad total
+                                    </span>
+                                    <hr>
+                                    @if($status2 > 0)
+                                   <span class="progress-description bg-red badge">
+                                        Estado: {{$status2}} alerta(s) 
+                                    @else
+                                    <span class="progress-description bg-purple badge">
+                                        Estado: OK
+                                    @endif
+                                    </span>                                   
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="info-box2 bg-green">
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Herramientas</span>
+                                    <span class="info-box-number">{{$ictool}}</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: {{$ictool*100/2000}}%"></div>
+                                    </div>
+                                    <span class="progress-description">
+                                        {{$ictool*100/2000}}% de la capacidad total
+                                    </span>
+                                    <hr>
+                                    @if($status3 > 0)
+                                   <span class="progress-description bg-red badge">
+                                        Estado: {{$status3}} alerta(s) 
+                                    @else
+                                    <span class="progress-description bg-purple badge">
+                                        Estado: OK
+                                    @endif
+                                    </span>                                    
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
                         </div>
                     </div>
                 </section>
@@ -109,96 +224,5 @@
 </html>
 
 <script type="text/javascript">
-$(function () {
-    new Chart(document.getElementById("bar-chart").getContext("2d"), getChartJs('bar'));
-    new Chart(document.getElementById("bar-chart2").getContext("2d"), getChartJs('bar'));
-    new Chart(document.getElementById("bar-chart3").getContext("2d"), getChartJs('bar'));
-
-});
-
-function getChartJs(type) {
-    var config = null;
-    if (type === 'doughnut') {
-        config = {
-            type: 'doughnut',
-            data: {
-                labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                datasets: [
-                    {
-                        label: "Doughnut chart",
-                        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                        data: [2478, 5267, 734, 784, 433]
-                    }
-                ]
-            },
-            options: {
-                title: {
-                    display: true,
-                }
-            }
-        }
-    } else if (type === 'bar') {
-        config = {
-            type: 'bar',
-            data: {
-                labels: ["item1", "item2", "item3", "item4", "item5"],
-                datasets: [
-                    {
-                        label: "Bar Chart",
-                        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                        data: [48, 37, 85, 100, 62]
-                    }
-                ]
-            },
-            options: {
-                legend: {display: false},
-                title: {
-                    display: true,
-                }
-            }
-        }
-    } else if (type === 'radar') {
-        config = {
-            type: 'polarArea',
-            data: {
-                labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                datasets: [
-                    {
-                        label: "Polar Area",
-                        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                        data: [2478, 3267, 1734, 1784, 1433]
-                    }
-                ]
-            },
-            options: {
-                title: {
-                    display: true,
-                }
-            }
-        }
-    } else if (type === 'polar') {
-        config = {
-            type: 'polarArea',
-            data: {
-                labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-                datasets: [
-                    {
-                        label: "Polar Area",
-                        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                        data: [2478, 3267, 1734, 1784, 1433]
-                    }
-                ]
-            },
-            options: {
-                title: {
-                    display: true,
-                }
-            }
-        }
-    }
-    return config;
-}
-
-
 
 </script>
