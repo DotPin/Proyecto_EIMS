@@ -33,7 +33,32 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $userc = User::where('type','worker')->count();
+        $itemc = Item::count();
+        $icepp = Item::where('cat_id',1)->count();
+        $icsup = Item::where('cat_id',2)->count();
+        $ictool = Item::where('cat_id',3)->count();
+
+        $subc = SubCat::all();
+        $status1 = 0;
+        $status2 = 0;
+        $status3 = 0;
+
+        //make automatic for next update
+        foreach($subc as $s){
+            $aux = Item::where('subCat_id', $s->id)->count();
+            if($s->alertLimit > $aux and $s->catR->name == 'EPP'){
+                $status1 = $status1 + 1;
+            }
+            if($s->alertLimit > $aux and $s->catR->name == 'supplies'){
+                $status2 = $status2 + 1;
+            }
+            if($s->alertLimit > $aux and $s->catR->name == 'tool'){
+                $status3 = $status3 + 1;
+            }
+        }
+
+        return view('home', compact('userc','itemc','icepp','icsup','ictool','status1','status2','status3'));
     }
 
     public function getList()

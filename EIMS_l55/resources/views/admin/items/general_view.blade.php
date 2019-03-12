@@ -73,7 +73,7 @@
                                 	<div>
                                     	@if($count1[$aux] >= $s->alertLimit)
                                     	{{$s->name}} 
-                                    	<div class="pull-right">{{$count1[$aux]}}/100</div>
+                                    	<div class="pull-right">{{$count1[$aux]}}/{{$s->alertLimit}}</div>
                                     	<div class="progress xs">
                                         	<div class="progress-bar bg-green" style="width: {{$count1[$aux]}}%"></div>
                                     	</div>
@@ -118,7 +118,7 @@
                                 	<div>
                                     	@if($count2[$aux] >= $s->alertLimit)
                                     	{{$s->name}} 
-                                    	<div class="pull-right">{{$count2[$aux]}}/100</div>
+                                    	<div class="pull-right">{{$count2[$aux]}}/{{$s->alertLimit}}</div>
                                     	<div class="progress xs">
                                         	<div class="progress-bar bg-green" style="width: {{$count2[$aux]}}%"></div>
                                     	</div>
@@ -163,7 +163,7 @@
                                 	<div>
                                     	@if($count3[$aux] >= $s->alertLimit)
                                     	{{$s->name}} 
-                                    	<div class="pull-right">{{$count3[$aux]}}/100</div>
+                                    	<div class="pull-right">{{$count3[$aux]}}/{{$s->alertLimit}}</div>
                                     	<div class="progress xs">
                                         	<div class="progress-bar bg-green" style="width: {{$count3[$aux]}}%"></div>
                                     	</div>
