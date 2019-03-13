@@ -36,9 +36,7 @@
                   <img src="{{asset('img/dimebag.jpg')}}" class="user-image" alt="User Image">
                 </a>
                 <ul class="dropdown-menu user-menu animated flipInY">
-                  <li><a href="#"><i class="ti-user"></i> Opción1</a></li>
-                  <li><a href="#"><i class="fa fa-fw fa-envelope-o"></i> Opción2</a></li>
-                  <li><a href="#"><i class="ti-settings"></i> Opciones3</a></li>
+                  <li><a href="#"><i class="ti-user"></i> Perfil</a></li>
                   <li class="divider"></li>
                   <li>
                     <form method="POST" action="{{route('logout')}}">
