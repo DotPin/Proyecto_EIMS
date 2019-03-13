@@ -102,6 +102,8 @@ class ItemsTableSeeder extends Seeder
             'cat_id'       => $i+1,
             'itemImg'      => '/img/icons/no-img.jpeg',
             'IBC'          => 'barcode/'.$cod.'.png',
+            'BC'           => $cod,
+            'disp'         => 'available',
             'subCat_id'    => $rndm,
             ];
 

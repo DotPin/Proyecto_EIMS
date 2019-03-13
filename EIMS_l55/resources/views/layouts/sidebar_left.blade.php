@@ -49,9 +49,12 @@
                   <a href="{{URL::to('admin/items/management')}}">Administrar</a></li>
                 <li class="{{ request()->is('admin/items/create-item') ? 'active' : '' }}">
                   <a href="{{URL::to('admin/items/create-item')}}">Agregar item</a></li>
-                <li><a href="">Prestamo</a></li>
-                <li><a href="">Seguimiento</a></li>
+                <li class="{{ request()->is('admin/items/loans/track') ? 'active' : '' }}">
+                <a href="{{URL::to('admin/items/loans/track')}}">Prestamos</a></li>
               </ul>
+            </li>
+            <li class="treeview {{ request()->is('admin/suppliers/*') ? 'active' : '' }}">
+              <a href="{{URL::to('admin/suppliers/management')}}"><i class="fa fa-truck"></i> <span>Proveedores</span></a>
             </li>
           </ul>
           @elseif(Auth::user()->type == 'worker')

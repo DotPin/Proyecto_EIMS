@@ -35,3 +35,15 @@ Route::get('/admin/items/create-item', 'HomeController@getCreateItem')->name('cr
 Route::put('/admin/items/update-item', 'HomeController@putItemUpdate')->name('updateItem');
 Route::post('/admin/items/destroy', 'HomeController@postItemDestroy')->name('destroyItem');
 Route::post('/admin/items/add', 'HomeController@postAddItem')->name('addItem');
+
+//loans
+Route::get('/admin/items/loans/track', 'HomeController@getTrackView')->name('trackView');
+Route::post('/admin/items/loans/add', 'HomeController@postAddLoan')->name('addLoan');
+
+//suppliers
+Route::get('/admin/suppliers/management', 'HomeController@getSupManagement')->name('suppliersManagement');
+Route::post('/admin/suppliers/add', 'HomeController@postAddSupplier')->name('addSupplier');
+Route::post('/admin/suppliers/edit', 'HomeController@postSupplierEdit')->name('editSupplier');
+Route::put('/admin/suppliers/update', 'HomeController@putUpdateSupplier')->name('updateSupplier');
+Route::post('/admin/suppliers/destroy', 'HomeController@postSupplierDestroy')->name('destroySupplier');
+

@@ -157,46 +157,5 @@
 
 <script type="text/javascript">
 
-$(document).ready(function(){
 
-            $('#type').select2({
-            minimumResultsForSearch: -1,
-            });
-
-            $("[data-mask]").inputmask();
-
-
-            $('#registerWorker').on('click',function(e){
-
-
-            e.preventDefault();
-
-            var name = $('#name').val();
-            var lName = $('#lName').val();
-            var type = $('#type').val();
-            var charge = $('#charge').val();
-            var phone = $('#phone').val();
-            var email = $('#email').val();
-
-            $.ajax({
-                // En data puedes utilizar un objeto JSON, un array o un query string
-               data:{name:name, lName:lName, type:type, charge:charge, phone:phone, email:email, "_token": "{{ csrf_token() }}"},
-                //Cambiar a type: POST si necesario
-                type: 'POST',
-                // Formato de datos que se espera en la respuesta
-                dataType: "json",
-                // URL a la que se enviará la solicitud Ajax
-                url: '/admin/register-worker' ,
-                success:function(data){
-                    $('#s').text('    Disponible '+data.single+' de 4');
-                    $('#c').text('    Disponible '+data.compartida+' de 2');
-                    $('#m').text('    Disponible '+data.matrimonial+' de 2');
-
-           }
-            }); 
-
-        });
-
-
-});
 </script>

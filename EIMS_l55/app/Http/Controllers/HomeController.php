@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Item;
 use App\SubCat;
+use App\Loan;
+use App\Supplier;
 use Image;
 use Response;
 use Redirect;
@@ -130,6 +132,10 @@ class HomeController extends Controller
 
         $items = Item::with('categoryR','subCatR')->get();
 
+        $epp = $items->where('cat_id',1)->count();
+        $sup = $items->where('cat_id',2)->count();
+        $tool = $items->where('cat_id',3)->count();
+
         $scount[] = Item::where('subCat_id',1)->count(); 
         $scount[] = Item::where('subCat_id',2)->count(); 
         $scount[] = Item::where('subCat_id',3)->count(); 
@@ -155,9 +161,8 @@ class HomeController extends Controller
         $count3[] = Item::where('subCat_id','=','8')->count();
         $count3[] = Item::where('subCat_id','=','9')->count();
 
-        //dd($count);
 
-        return view('/admin/items/general_view',compact('items','subcat','count1','count2','count3', 'scount'));
+        return view('/admin/items/general_view',compact('items','subcat','count1','count2','count3', 'scount','epp','sup','tool'));
     }
 
     public function getManagement()
@@ -238,6 +243,7 @@ class HomeController extends Controller
         $item->name                 = $request->name;
         $item->description          = $request->description;
         $item->IBC                  = 'barcode/'. $cod .'.png';
+        $item->BC                   = $cod;
         $item->subCat_id            = $request->subcat;
         $item->cat_id               = $request->category;
             
@@ -246,6 +252,116 @@ class HomeController extends Controller
         \Session::flash('message', 'Item '.$request->name.' ha sido ingresado con éxito');
 
         return Redirect::to('/admin/items/create-item');
+    }
+
+    //LOANS
+
+    public function getTrackView()
+    {
+        $loans = Loan::all();
+        $users = User::all();
+        $items = Item::all();
+        return view('/admin/items/loans/track', compact('loans','users','items'));
+    }
+
+    public function postAddLoan(Request $request)
+    {
+
+        //improve validator
+        $aux = $request->validate([
+            'i_id' => 'required',        
+            'u_id' => 'required',        
+            'startL_submit' => 'required',         
+            'endL_submit' => 'required',
+        ]);
+
+        $loan = new Loan();
+        $loan->item_id = $request->i_id;
+        $loan->user_id = $request->u_id;
+        $loan->startL  = $request->startL_submit;
+        $loan->endL = $request->endL_submit;
+        $loan->save();
+
+        $itemL = Item::where('id', $request->i_id)->first();
+        $itemL->disp = 'loan';
+        $itemL->save();
+
+        //for consistency in reload
+        $loans = Loan::all();
+        $users = User::all();
+        $items = Item::all();
+
+        //for nicer performance implement swal
+        \Session::flash('message', 'Préstamo ingresado con éxito');
+        return view('/admin/items/loans/track', compact('loans','users','items'));
+    }
+
+    //suppliers actions
+    public function getSupManagement()
+    {
+        $suppliers = Supplier::all();
+        return view('/admin/suppliers/management', compact('suppliers'));
+    }
+
+    public function postAddSupplier(Request $request)
+    {
+        $aux = $request->validate([
+            'rut' => 'required',        
+            'bn' => 'required',        
+            'contactName' => 'required',        
+            'address' => 'required|string|max:255',         
+            'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|string|max:255',
+
+        ]);
+
+        $supplier = new Supplier();
+        $supplier->rut = $request->rut;
+        $supplier->bn = $request->bn;
+        $supplier->contactName  = $request->contactName;
+        $supplier->address = $request->address;
+        $supplier->email = $request->email;
+        $supplier->phone = $request->phone;
+        $supplier->save();
+
+        $suppliers = Supplier::all();
+
+
+        //for nicer performance implement swal
+        \Session::flash('message', 'Proveedor ingresado con éxito');
+        return view('/admin/suppliers/management', compact('suppliers'));
+    }
+
+    public function postSupplierEdit(Request $request)
+    {
+        
+        $supplier = Supplier::findOrFail($request->get('id'));
+        return $supplier->toJson();
+    }
+
+    public function putUpdateSupplier(Request $request)
+    {
+        $supplier = Supplier::where('email',$request->email)->first();
+        $supplier->rut = $request->rut;
+        $supplier->bn = $request->bn;
+        $supplier->contactName = $request->contactName;
+        $supplier->address = $request->address;
+        $supplier->phone = $request->phone;
+        $supplier->email = $request->email;
+        $supplier->save();
+
+        $message = ' Proveedor '.$supplier->bn.' fue actualizado exitosamente.';
+        return response()->json([
+            'message'=> $message
+            ]);
+    }
+
+    public function postSupplierDestroy(Request $request)
+    {
+        $supplier = Supplier::findOrFail($request->get('id'));
+        $supplier->delete();
+
+        return response()->json();
     }
 
 }
