@@ -47,3 +47,10 @@ Route::post('/admin/suppliers/edit', 'HomeController@postSupplierEdit')->name('e
 Route::put('/admin/suppliers/update', 'HomeController@putUpdateSupplier')->name('updateSupplier');
 Route::post('/admin/suppliers/destroy', 'HomeController@postSupplierDestroy')->name('destroySupplier');
 
+
+//workers
+Route::get('/worker/home', 'WorkerController@index')->name('workerHome');
+Route::get('/worker/inventory/generalView', 'WorkerController@getGeneralView')->name('workerGeneralView');
+Route::get('/worker/inventory/loansStatus', 'WorkerController@getLoansStatus')->name('workerLoansStatus');
+
+

@@ -60,17 +60,21 @@
           @elseif(Auth::user()->type == 'worker')
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="treeview">
-              <a href=#><i class="fa fa-home"></i> <span>Inicio</span></a>
+            <li class="treeview {{ request()->is('workerHhome') ? 'active' : '' }}">
+              <a href="{{URL::to('worker/home')}}"><i class="fa fa-home"></i> <span>Inicio</span></a>
             </li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-history"></i> <span>Inventario</span></a>
-            </li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-handshake-o"></i> <span>Nivel de stock</span></a>
-            </li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-handshake-o"></i> <span>Por definir</span></a>
+            <li class="treeview {{ request()->is('worker/inventory/*') ? 'active' : '' }}">
+              <a href="#"><i class="fa fa-archive"></i> <span>Inventario</span>
+              <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+              </span>
+              </a>
+              <ul class="treeview-menu">
+                <li class="{{ request()->is('worker/inventory/generalView') ? 'active' : '' }}">
+                  <a href="{{URL::to('worker/inventory/generalView')}}">Vista general</a></li>
+                <li class="{{ request()->is('worker/inventory/loansStatus') ? 'active' : '' }}">
+                <a href="{{URL::to('worker/inventory/loansStatus')}}">Prestamos actuales</a></li>
+              </ul>
             </li>
           </ul>
           @endif

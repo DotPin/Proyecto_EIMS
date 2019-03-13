@@ -8,6 +8,7 @@
         <!--animate css-->
         <link rel="stylesheet" href="{{asset('animate.css')}}">
         <link rel="stylesheet" href="{{asset('js/select2/select2.min.css')}}">
+
         <!-- Theme style -->
         <link rel="stylesheet" href="{{asset('css/main-style.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/skins/all-skins.css')}}">
@@ -124,6 +125,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </form>
                         <!-- /.box-body -->
@@ -157,5 +159,16 @@
 
 <script type="text/javascript">
 
+    $('#subcat').select2({
+                minimumResultsForSearch: 5,
+                placeholder: "Seleccionar subcategoria",
+                allowClear: true,
+            });
+
+    $('#category').select2({
+                minimumResultsForSearch: 3,
+                placeholder: "Seleccionar categoria",
+                allowClear: true,
+            });
 
 </script>

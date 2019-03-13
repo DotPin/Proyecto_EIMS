@@ -8,6 +8,7 @@ use App\Item;
 use App\SubCat;
 use App\Loan;
 use App\Supplier;
+use Carbon\Carbon;
 use Image;
 use Response;
 use Redirect;
@@ -40,6 +41,9 @@ class HomeController extends Controller
         $icepp = Item::where('cat_id',1)->count();
         $icsup = Item::where('cat_id',2)->count();
         $ictool = Item::where('cat_id',3)->count();
+        $suppliers = Supplier::count();
+        $loans = Loan::count();
+        $loansToday = Loan::where('endL', date('Y-m-d'))->count();
 
         $subc = SubCat::all();
         $status1 = 0;
@@ -60,7 +64,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('home', compact('userc','itemc','icepp','icsup','ictool','status1','status2','status3'));
+        return view('home', compact('userc','itemc','icepp','icsup','ictool','status1','status2','status3','suppliers','loans','loansToday'));
     }
 
     public function getList()
@@ -160,6 +164,8 @@ class HomeController extends Controller
         $count3[] = Item::where('subCat_id','=','7')->count();
         $count3[] = Item::where('subCat_id','=','8')->count();
         $count3[] = Item::where('subCat_id','=','9')->count();
+
+        
 
 
         return view('/admin/items/general_view',compact('items','subcat','count1','count2','count3', 'scount','epp','sup','tool'));

@@ -52,7 +52,7 @@
                             <div class="info-box">
                                 <div class="info-box-content">
                                     <i class="fa fa-truck text-navy"></i>
-                                    <div class="text-center value">5</div>
+                                    <div class="text-center value">{{$suppliers}}</div>
                                     <div class="text-muted text-uppercase text-center">Proveedores</div>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                             <div class="info-box">
                                 <div class="info-box-content">
                                     <i class="fa fa-handshake-o text-maroon"></i>
-                                    <div class="text-center value">12</div>
+                                    <div class="text-center value">{{$loans}}</div>
                                     <div class="text-muted text-uppercase text-center">Prestamos activos</div>
                                 </div>
                             </div>
@@ -82,7 +82,7 @@
                             <div class="info-box">
                                 <div class="info-box-content">
                                     <i class="fa fa-undo text-green"></i>
-                                    <div class="text-center value">6</div>
+                                    <div class="text-center value">{{$loansToday}}</div>
                                     <div class="text-muted text-uppercase text-center">Devoluciones hoy</div>
                                 </div>
                             </div>
