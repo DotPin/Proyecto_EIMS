@@ -21,7 +21,10 @@ class Item extends Model
     protected $fillable = [
         'name',
         'description',
+        'itemImg',
         'IBC',
+        'BC',
+        'disp',
         'cat_id',
         'subCat_id',
 

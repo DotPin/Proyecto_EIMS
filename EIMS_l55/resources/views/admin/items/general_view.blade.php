@@ -73,15 +73,15 @@
                                 	<div>
                                     	@if($count1[$aux] >= $s->alertLimit)
                                     	{{$s->name}} 
-                                    	<div class="pull-right">{{$count1[$aux]}}/{{$s->alertLimit}}</div>
+                                    	<div class="pull-right">{{$count1[$aux]}}/{{$epp}}</div>
                                     	<div class="progress xs">
-                                        	<div class="progress-bar bg-green" style="width: {{$count1[$aux]}}%"></div>
+                                        	<div class="progress-bar bg-green" style="width: {{$count1[$aux]*100/$epp}}%"></div>
                                     	</div>
                                     	@else
                                     	{{$s->name}} <i class="fa fa-exclamation-circle text-red"></i>
-                                    	<div class="pull-right">{{$count1[$aux]}}/{{$count1[$aux]}}</div>
+                                    	<div class="pull-right">{{$count1[$aux]}}/{{$epp}}</div>
                                     	<div class="progress xs">
-                                        	<div class="progress-bar bg-red" style="width: {{$count1[$aux]}}%"></div>
+                                        	<div class="progress-bar bg-red" style="width: {{$count1[$aux]*100/$epp}}%"></div>
                                     	</div>	
                                     	@endif
                                     	<div class="hidden">{{$aux = $aux + 1}}</div>
@@ -114,19 +114,19 @@
                                 <div class="box-body">
                                 	<div class="hidden">{{$aux =0}}</div>
                                 	@foreach($subcat as $s)
-                                	@if($s->cat_id == 1)
+                                	@if($s->cat_id == 2)
                                 	<div>
                                     	@if($count2[$aux] >= $s->alertLimit)
                                     	{{$s->name}} 
-                                    	<div class="pull-right">{{$count2[$aux]}}/{{$s->alertLimit}}</div>
+                                    	<div class="pull-right">{{$count2[$aux]}}/{{$sup}}</div>
                                     	<div class="progress xs">
-                                        	<div class="progress-bar bg-green" style="width: {{$count2[$aux]}}%"></div>
+                                        	<div class="progress-bar bg-green" style="width: {{$count2[$aux]*100/$sup}}%"></div>
                                     	</div>
                                     	@else
                                     	{{$s->name}} <i class="fa fa-exclamation-circle text-red"></i>
-                                    	<div class="pull-right">{{$count2[$aux]}}/{{$count2[$aux]}}</div>
+                                    	<div class="pull-right">{{$count2[$aux]}}/{{$sup}}</div>
                                     	<div class="progress xs">
-                                        	<div class="progress-bar bg-red" style="width: {{$count2[$aux]}}%"></div>
+                                        	<div class="progress-bar bg-red" style="width: {{$count2[$aux]*100/$sup}}%"></div>
                                     	</div>	
                                     	@endif
                                     	<div class="hidden">{{$aux = $aux + 1}}</div>
@@ -159,19 +159,19 @@
                                 <div class="box-body">
                                 	<div class="hidden">{{$aux = 0}}</div>
                                 	@foreach($subcat as $s)
-                                	@if($s->cat_id == 1)
+                                	@if($s->cat_id == 3)
                                 	<div>
                                     	@if($count3[$aux] >= $s->alertLimit)
                                     	{{$s->name}} 
-                                    	<div class="pull-right">{{$count3[$aux]}}/{{$s->alertLimit}}</div>
+                                    	<div class="pull-right">{{$count3[$aux]}}/{{$tool}}</div>
                                     	<div class="progress xs">
-                                        	<div class="progress-bar bg-green" style="width: {{$count3[$aux]}}%"></div>
+                                        	<div class="progress-bar bg-green" style="width: {{$count3[$aux]*100/$tool}}%"></div>
                                     	</div>
                                     	@else
                                     	{{$s->name}} <i class="fa fa-exclamation-circle text-red"></i>
-                                    	<div class="pull-right">{{$count3[$aux]}}/{{$count3[$aux]}}</div>
+                                    	<div class="pull-right">{{$count3[$aux]}}/{{$tool}}}</div>
                                     	<div class="progress xs">
-                                        	<div class="progress-bar bg-red" style="width: {{$count3[$aux]}}%"></div>
+                                        	<div class="progress-bar bg-red" style="width: {{$count3[$aux]*100/$tool}}%"></div>
                                     	</div>	
                                     	@endif
                                     	<div class="hidden">{{$aux = $aux + 1}}</div>

@@ -18,7 +18,12 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->string('description', 200);
             $table->string('itemImg')->default("/img/icons/no-img.jpeg");
+            //Image route for BarCode
             $table->string('IBC');
+            //Barcode for filtering
+            $table->string('BC');
+            //Status showing if is in loan or not
+            $table->enum('disp',['loan','available']);
             $table->timestamps();
 
             //fk category  
