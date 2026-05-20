@@ -87,7 +87,7 @@ DB_PASSWORD=<MySQL_password>
 - Generar Migraciones: Estructura de Base de Datos
 
 ```bash
-$php artisan migrate
+$php artisan migrate:fresh
 ```
 
 - Generar Datos
