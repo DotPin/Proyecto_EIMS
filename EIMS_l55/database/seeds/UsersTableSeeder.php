@@ -17,11 +17,11 @@ class UsersTableSeeder extends Seeder
 
         $user = new User();
 
-        $user->name                 = 'Leo';
-        $user->lName                = 'Caloguerea';
+        $user->name                 = 'Usuario';
+        $user->lName                = 'Test';
         $user->type 				= 'admin';
-        $user->email                = 'l.caloguerea@gmail.com';
-        $user->phone 				= '+56966080281';
+        $user->email                = 'usuario@test.cl';
+        $user->phone 				= '+56998765432';
         $user->charge               = 'Developer';
         $user->status               = 'active';
         $user->password             = bcrypt('123456');
