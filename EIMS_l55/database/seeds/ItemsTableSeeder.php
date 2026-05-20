@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use CodeItNow\BarcodeBundle\Utils\BarcodeGenerator;
+//use CodeItNow\BarcodeBundle\Utils\BarcodeGenerator;
 use Faker\Factory as Faker;
 use App\Item;
 use App\SubCat;
@@ -83,17 +83,17 @@ class ItemsTableSeeder extends Seeder
         $cod = $c.$s.$count;
 
         //barcode
-        $barcode = new BarcodeGenerator();
+        /*$barcode = new BarcodeGenerator();
         $barcode->setText($cod);
         $barcode->setType(BarcodeGenerator::Code128);
         $barcode->setScale(2);
         $barcode->setThickness(25);
-        $barcode->setFontSize(10);
-        $code = $barcode->generate();
+        $barcode->setFontSize(10);*/
+        $code = random_int(1, 99999);
 
         $code = base64_decode($code);
 
-        Image::make($code)->save( public_path('/img/barcode/'. $cod .'.png' ) );
+        //Image::make($code)->save( public_path('/img/barcode/'. $cod .'.png' ) );
 
 
         $samples_temp[] = [  
