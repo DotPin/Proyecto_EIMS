@@ -106,6 +106,6 @@ $php artisan serve
 
 - Datos del login se encuentran en el seeder.
 
-- Software se encuentra en proceso de actualización y migraciones.
+- Software se encuentra en proceso de mantención, actualización y migraciones.
 
 - Software desarrollado para propósito de presentación funcional.
